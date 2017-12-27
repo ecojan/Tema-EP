@@ -18,7 +18,6 @@ function saveImage(req, res) {
 
     fs.existsSync('resized') || fs.mkdirSync('resized');
 
-    console.log(req);
     streamToBuffer(req, function (err, buffer) {
         // Insert your business logic here
         if(err) { 
