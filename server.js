@@ -22,7 +22,7 @@ function saveImage(req, res) {
     streamToBuffer(req, function (err, buffer) {
         // Insert your business logic here
     
-
+        res.status(200).send('File uploaded with succes!');
         jimp.read(buffer, function (err, image) {
             if (err) console.log(err);
             else {
@@ -40,7 +40,7 @@ function saveImage(req, res) {
                     .write('./resized/' + '50x50' + 'test_image.jpg'); // save 
             }
         });
-        res.status(200).send('File uploaded and resized with succes!');
+        
     });
 
     
