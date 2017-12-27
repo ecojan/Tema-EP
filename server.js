@@ -2,8 +2,6 @@ const express = require('express');
 const multer  = require('multer');
 const jimp = require('jimp');
 
-
-
 const app = express();
 
 const storage = multer.diskStorage({
@@ -31,11 +29,21 @@ function saveImage(req, res) {
         }
         res.status(200).send('File uploaded successfully');
 
-    jimp.read('./'+req.file.path, function (err, image) {
-        if (err) throw err;
-        image.resize(200, 200)            // resize 
-             .write('./resized/' + '200x200' + req.file.filename); // save 
-    });
+        jimp.read('./'+req.file.path, function (err, image) {
+            if (err) throw err;
+            image.resize(500, 500)            // resize 
+                .write('./resized/' + '500x500' + req.file.filename); // save 
+            image.resize(400, 400)            // resize 
+                .write('./resized/' + '400x400' + req.file.filename); // save 
+            image.resize(300, 300)            // resize 
+                .write('./resized/' + '300x300' + req.file.filename); // save 
+            image.resize(200, 200)            // resize 
+                .write('./resized/' + '200x200' + req.file.filename); // save 
+            image.resize(100, 100)            // resize 
+                .write('./resized/' + '100x100' + req.file.filename); // save 
+            image.resize(50, 50)            // resize 
+                .write('./resized/' + '50x50' + req.file.filename); // save 
+        });
         
     });   
 }
