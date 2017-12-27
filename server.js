@@ -18,27 +18,31 @@ function saveImage(req, res) {
 
     fs.existsSync('resized') || fs.mkdirSync('resized');
 
-
+    console.log(req);
     streamToBuffer(req, function (err, buffer) {
         // Insert your business logic here
-    
+        if(err) { 
+            console.log(err)
+            res.status(500).send('Problem during upload');
+            return;
+        }
         res.status(200).send('File uploaded with succes!');
-        jimp.read(buffer, function (err, image) {
-            if (err) console.log(err);
-            else {
+        jimp.read(buffer).then(function (image) {
                 image.resize(500, 500)            // resize 
-                    .write('./resized/' + '500x500' + 'test_image.jpg'); // save 
-                image.resize(400, 400)            // resize 
-                    .write('./resized/' + '400x400' + 'test_image.jpg'); // save 
-                image.resize(300, 300)            // resize 
-                    .write('./resized/' + '300x300' + 'test_image.jpg'); // save 
-                image.resize(200, 200)            // resize 
-                    .write('./resized/' + '200x200' + 'test_image.jpg'); // save 
-                image.resize(100, 100)            // resize 
-                    .write('./resized/' + '100x100' + 'test_image.jpg'); // save 
-                image.resize(50, 50)            // resize 
+                    .write('./resized/' + '500x500' + 'test_image.jpg') // save 
+                .resize(400, 400)           // resize 
+                    .write('./resized/' + '400x400' + 'test_image.jpg') // save 
+                .resize(300, 300)            // resize 
+                    .write('./resized/' + '300x300' + 'test_image.jpg') // save 
+                .resize(200, 200)            // resize 
+                    .write('./resized/' + '200x200' + 'test_image.jpg') // save 
+                .resize(100, 100)            // resize 
+                    .write('./resized/' + '100x100' + 'test_image.jpg') // save 
+                .resize(50, 50)            // resize 
                     .write('./resized/' + '50x50' + 'test_image.jpg'); // save 
             }
+        ).catch(function (err) {
+            console.error(err);
         });
         
     });
