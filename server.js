@@ -2,11 +2,13 @@ const express = require('express');
 const jimp = require('jimp');
 const fs = require('fs');
 const streamToBuffer = require('stream-to-buffer');
+const logger = require('morgan');
 const app = express();
 
 
 var requests_nr = 0;
 
+app.use(logger('dev'));
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.post('/image/upload', (req, res) => saveImage(req, res));
