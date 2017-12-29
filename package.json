@@ -9,6 +9,7 @@
   "author": "Eugen Nicolae Cojan",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "jimp": "^0.2.28",
     "morgan": "^1.9.0",
